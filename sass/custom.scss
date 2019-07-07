@@ -1,0 +1,1234 @@
+$black 			: #000;
+$darkorchid 	: #7D1B7E;
+$gainsboro 		: #DCDCDC;
+$gray20 		: #333;
+$gray30 		: #EEE;
+$gray80 		: #CCC;
+$davygray 		: #555;
+$maroon 		: #810541;
+$mauve 			: #E0B0FF;
+$bluemagenta 	: #8067B7;
+$purplemimosa 	: #9E7BFF;
+$white 			: #FFF;
+
+@mixin transform($transform) {
+	-webkit-transform: $transform;
+	-moz-transform: $transform;
+	-ms-transform: $transform;
+	-o-transform: $transform;
+	transform: $transform;
+}
+
+@mixin transition($transition) {
+	-webkit-transition: $transition;
+	-moz-transition: $transition;
+	-ms-transition: $transition;
+	-o-transition: $transition;
+	transition: $transition;
+}
+
+@mixin transform-size($transform, $size) {
+	text-transform: $transform;
+	font-size: $size;
+}
+
+@mixin prev-next($display, $height, $width, $line, $align) {
+	display: $display;
+	height: $height;
+	width: $width;
+	line-height: $line;
+	text-align: $align;
+}
+
+html, body { overflow-x: hidden; }
+
+a:hover, a:focus { text-decoration: none; }
+
+ul, ol { list-style: none; }
+
+.abilo-nav {
+
+	padding: 20px;
+	@include transition(all 0.8s);
+
+	img {
+		display: block;
+		width: 100px;
+	}
+
+	&-img {
+		filter: brightness(0) invert(1);
+	}
+
+	.navbar-toggler {
+		border-color: rgba(255,255,255,0.5);
+		border-radius: 0;
+
+		&:focus { outline: 0; }
+
+		span {
+			color: rgba(255,255,255,0.8);
+			font-size: 24px;
+		}
+	}
+
+	.navbar-nav {
+		> li {
+			> a {
+				color: $white !important;
+				text-transform: uppercase;
+
+				&:hover {
+					color: $mauve !important;
+				}
+			}
+
+			> .abilo-nav-drop {
+				background-color: transparent;
+				border-radius: 0;
+				border: 0;
+
+				a {
+					color: $white;
+					text-transform: uppercase;
+
+					&:hover, &:focus {
+						color: $mauve;
+						background-color: transparent;
+					}
+				}
+			}
+		}
+
+		> .active {
+			> a {
+				color: $mauve !important;
+			}
+		}
+	}
+}
+
+.on {
+	background-color: $bluemagenta !important;
+	padding: 5px !important;
+
+	.navbar-nav {
+		> li {
+			> .abilo-nav-drop {
+				background-color: $bluemagenta;
+			}
+		}
+	}
+}
+
+.abilo-header {
+
+	position: relative;
+	height: 100vh;
+
+	@mixin overlay() {
+		position: absolute;
+	 	top: 0;
+	 	bottom: 0;
+	 	left: 0;
+	 	right: 0;
+	}
+
+	&-overlay {
+		@include overlay();
+	 	background-color: $darkorchid;
+	 	opacity: .5;
+	}
+
+	&-text {
+		position: absolute;
+	 	top: 50%;
+	 	left: 50%;
+	 	@include transform(translate(-50%, -50%));
+	 	text-align: center;
+
+	 	h1, p, a, span {
+	 		color: $white;
+	 	}
+
+	 	p, span {
+ 			font-size: 20px;
+ 			font-style: italic;
+ 		}
+
+ 		a {
+ 			&:hover {
+ 				color: $purplemimosa;
+ 			}
+ 		}
+	}
+
+	@at-root & img {
+		position: relative;
+		width: 100%;
+		height: 100vh;
+		object-fit: cover;
+	}
+}
+
+.abilo-button-default {
+	background-color: transparent;
+	border-radius: 0;
+	border: 0;
+	padding: 10px 20px;
+}
+
+.abilo-button-default, svg {
+	cursor: pointer;
+	text-transform: uppercase;
+}
+
+.abilo-main {
+
+	&-blog {
+		margin: 20px 0;
+	}
+
+	%section-shared {
+		width: 100%;
+		height: 100%;
+	}
+
+	.abilo-section1,
+	.abilo-section3 {
+		@extend %section-shared;
+		background-color: $gray80;
+	}
+
+	.abilo-section4 {
+		@extend %section-shared;
+	}
+
+	.abilo-section1-header, 
+	.abilo-section2-header {
+		margin-top: 0;
+		margin-bottom: 25px;
+		padding: 50px 0;
+	}
+	.abilo-section1-title, 
+	.abilo-section2-title {
+		@include transform-size(uppercase, 24px);
+		font-weight: 500;
+	}
+
+	.abilo-section1-link, 
+	.abilo-section2-link {
+		@include transform-size(uppercase, 24px - 6);
+	}
+
+	.abilo-section1-link {
+		color: $black;
+
+		&:hover {
+			color: $maroon;
+		}
+
+		.fa {
+			padding-left: 5px;
+			font-size: 22px;
+		}
+	}
+}
+
+.abilo-section1 {
+	$this: &;
+
+	&-column3 {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	&-image {
+		position: relative;
+
+		img {
+			display: block;
+			width: 100%;
+		}
+	}
+
+	&-description {
+		display: block;
+		width: 100%;
+		height: 100%;
+		background-color: $white;
+		position: relative;
+	}
+
+	.abilo-desc-top:before, 
+	.abilo-desc-top:after {
+		content: '';
+		display: block;
+		position: absolute;
+		bottom: 100%;
+		width: 0;
+		height: 0;
+	}
+
+	.abilo-desc-bottom:before, 
+	.abilo-desc-bottom:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 100%;
+		width: 0;
+		height: 0;
+		z-index: 1;
+	}
+
+	.abilo-desc-bottom:before {
+		left: 50%;
+		margin-left: -25px;
+		border: 20px solid transparent;
+		border-top-color: $gainsboro;
+	}
+
+	.abilo-desc-bottom:after {
+		left: 50%;
+		margin-left: -25px;
+		border: 20px solid transparent;
+		border-top-color: $white;
+	}
+
+	.abilo-desc-top:before {
+		left: 50%;
+		margin-left: -25px;
+		border: 20px solid transparent;
+		border-bottom-color: $gainsboro;
+	}
+
+	.abilo-desc-top:after {
+		left: 50%;
+		margin-left: -25px;
+		border: 20px solid transparent;
+		border-bottom-color: $white;
+	}
+
+	&-tile {
+		#{$this}-desc {
+			position: absolute;
+			top: 50%;
+		 	@include transform(translateY(-50%));
+			text-align: center;
+			padding: 0 15px;
+
+			h4 {
+				@include transform-size(uppercase, 24px - 4);
+			}
+
+			#{$this}-link {
+				text-transform: uppercase;
+				color: $black;
+
+				&:hover {
+					color: $maroon;
+				}
+			}
+		}
+	}
+}
+
+.abilo-section2 {
+	background-color: $gray20;
+}
+
+.abilo-section2 {
+	$this: &;
+
+	&-header {
+		#{$this}-title, 
+		#{$this}-link {
+			color: $white;
+		}
+
+		#{$this}-link {
+			&:hover {
+				color: $mauve;
+			}
+		}
+	}
+}
+
+.abilo-carousel {
+	padding-bottom: 40px;
+
+	.carousel-item {
+		img {
+			display: block;
+			width: 100%;
+			height: 250px;
+		}
+	}
+
+	.abilo-thumbnail-caption {
+		margin-top: 20px;
+
+		.abilo-section2-caption-link {
+			color: $white;
+
+			&:hover {
+				color: $mauve;
+			}
+		}
+
+		h4 {
+			@include transform-size(uppercase, 24px - 4);
+		}
+
+		p {
+			font-size: 14px;
+		}
+	}
+}
+
+.abilo-section3 {
+	$this: &;
+	&-header {
+		margin-top: 0;
+		padding: 20px 0;
+
+		#{$this}-title {
+			color: $black;
+			@include transform-size(uppercase, 24px);
+		}
+	}
+}
+
+.abilo-section3 {
+	.abilo-testi-col {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.abilo-testi-bg {
+		width: 100%;
+		background-color: rgba(195, 142, 199, 0.8);
+		padding: 10px 15px;
+		border-radius: 5px;
+		position: relative;
+		flex-grow: 1;
+
+		&:after {
+			content: '';
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 20px 18px 0 0;
+			border-color: rgba(195, 142, 199, 0.8) transparent transparent transparent;
+			position: absolute;
+			top: 100%;
+			left: 20px;
+		}
+
+		p {
+			color: $black;
+			text-align: justify;
+		}
+	}
+
+	.abilo-testi-name {
+		margin: 30px 0;
+
+		h5 {
+			margin-bottom: 0;
+			color: $maroon;
+			font-weight: 200;
+			font-style: italic;
+		}
+
+		span {
+			color: $black;
+		}
+	}
+}
+
+.abilo-top {
+	margin-top: 20px;
+}
+
+.abilo-blog1 {
+	$this: &;
+
+	&-image-text {
+		position: relative;
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		#{$this}-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(255,255,255,0.3);
+			z-index: 1;
+		}
+
+		#{$this}-text {
+			position: absolute;
+			top: 50%;
+			left: 20px;
+			right: 20px;
+			@include transform(translateY(-50%));
+			z-index: 2;
+
+			a {
+				color: $black;
+			}
+
+			h1 {
+				font-size: 38px;
+			}
+		}
+	}
+
+	.abilo-blog-description {
+		width: 100%;
+		height: 200px;
+		overflow: hidden;
+		padding: 10px 15px;
+		margin-bottom: 20px;
+		background-color: rgba(195, 142, 199, 0.8);
+		display: flex;
+		flex-direction: column;
+		text-align: justify;
+
+		span {
+			color: $davygray;
+		}
+
+		a {
+			color: $darkorchid;
+
+			&:hover {
+				color: $davygray;
+			}
+		}
+
+		p {
+			margin-top: 10px;
+			color: $black;
+		}
+	}
+}
+
+%share-count-respond {
+	padding-left: 6px;
+	@include transform-size(uppercase, 24px - 8);
+	font-weight: bold;
+}
+
+.abilo-blog2 {
+
+	&-tags {
+		border-top: 1px solid $gray80;
+		border-bottom: 1px solid $gray80;
+		padding: 5px 6px;
+
+		a {
+			color: $black;
+
+			&:hover {
+				color: $darkorchid;
+			}
+		}
+	}
+
+	&-share {
+		margin: 8px 0;
+		border-bottom: 1px solid $gray80;
+
+		span {
+			@extend %share-count-respond;
+		}
+
+		ul {
+			padding-top: 10px;
+			padding-left: 0;
+		}
+
+		li {
+			display: inline-block;
+
+			&:first-child {
+				a {
+					margin-left: 5px;
+				}
+			}
+		}
+
+		a {
+			position: relative;
+			display: block;
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			border-radius: 50%;
+			background-color: $bluemagenta;
+			color: $white;
+			font-size: 24px - 4;
+			margin: 0 10px;
+
+			&:hover {
+				color: $mauve;
+			}
+		}
+	}
+
+	&-comment-count {
+		span {
+			@extend %share-count-respond;
+		}
+	}
+
+	&-comments {
+		margin: 10px 0;
+	}
+}
+
+.abilo-comment {
+	&-respond {
+		h5 {
+			@extend %share-count-respond;
+		}
+	}
+
+	&-list {
+		padding-left: 0;
+	}
+
+	&-avatar {
+		float: left;
+		width: 100px;
+		height: 100px;
+
+		img {
+			display: block;
+			width: 100%;
+			border-radius: 10px;
+		}
+	}
+
+	&-wrapper {
+		overflow: hidden;
+		padding-left: 20px;
+		padding-right: 0;
+	}
+
+	&-meta {
+		position: relative;
+
+		a {
+			color: $davygray;
+
+			&:hover {
+				color: $darkorchid;
+			}
+		}
+
+		span {
+			font-style: italic;
+			font-weight: 400;
+		}
+
+		time {
+			padding-right: 10px;
+			color: $davygray;
+		}
+	}
+
+	&-children {
+		margin: 10px 0;
+		padding: 10px 20px;
+		border: 1px solid $davygray;
+		overflow: hidden;
+	}
+
+	&-form {
+		label {
+			margin: 15px 0;
+		}
+
+		textarea, input[type="text"] {
+			width: 100%;
+			padding: 5px;
+		}
+
+		%comment-focus {
+			outline: none;
+		}
+
+		%comment-hover {
+			border: 1px solid $darkorchid;
+		}
+
+		textarea {
+			float: none;
+			display: block;
+			height: 200px;
+
+			&:focus {
+				@extend %comment-focus;
+			}
+
+			&:hover {
+				@extend %comment-hover;
+			}
+		}
+
+		input[type="text"] {
+			border: 1px solid rgb(169, 169, 169);
+
+			&:focus {
+				@extend %comment-focus;
+			}
+
+			&:hover {
+				@extend %comment-hover;
+			}
+		}
+
+		input[type="submit"] {
+			display: block;
+			padding: 10px 20px;
+			font-weight: normal;
+			margin: 20px 0;
+			background-color: $bluemagenta;
+			color: $white;
+			border: 0;
+
+			&:hover {
+				@extend %hover;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+.abilo-reply {
+	float: right;
+	margin: 20px 0;
+
+	a {
+		background-color: $bluemagenta;
+		color: $white;
+		padding: 8px 12px;
+
+		&:hover {
+			@extend %hover;
+		}
+	}
+}
+
+.abilo-sidebar-widget {
+	margin-bottom: 20px;
+}
+
+%search-subscribe-submit {
+	cursor: pointer;
+	width: 35%;
+	outline: none;
+	overflow: visible;
+	box-shadow: none;
+	background-color: $bluemagenta;
+	color: $white;
+}
+
+%hover {
+	background-color: rgba(128, 103, 183, 0.8);
+}
+
+.abilo-search {
+	&-form {
+		input[type="text"] {
+			width: 60%;
+			float: left;
+			border: 1px solid $gray80;
+			padding: 5px 8px;
+			font-size: 16px;
+
+			&:hover, 
+			&:focus {
+				border: 1px solid $bluemagenta;
+				outline: none;
+			}
+		}
+		input[type="submit"] {
+			@extend %search-subscribe-submit;
+			float: left;
+			padding: 5px;
+			border: 1px solid $bluemagenta;
+
+			&:hover {
+				@extend %hover;
+			}
+		}
+	}
+}
+
+.abilo-subscribe {
+	&-widget {
+		background-color: $gray80;
+		padding: 20px 10px;
+
+		label {
+			padding-bottom: 5px;
+		}
+	}
+
+	&-form {
+		input[type="text"] {
+			width: 100%;
+			padding: 8px;
+			margin-bottom: 20px;
+
+			&:hover, &:focus {
+				outline: none;
+			}
+		}
+
+		input[type="submit"] {
+			@extend %search-subscribe-submit;
+			padding: 8px;
+			border: none;
+
+			&:hover {
+				@extend %hover;
+			}
+		}
+	}
+}
+
+.abilo-filter-form {
+	select {
+		width: 100%;
+		margin-bottom: 10px;
+		padding: 6px 12px;
+		border: 0;
+		background-color: $gray80;
+		color: $davygray;
+		@include transform-size(uppercase, 24px - 10);
+
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+.abilo-title-widget {
+	margin-bottom: 10px;
+
+	span {
+		@include transform-size(uppercase, 24px - 8);
+		font-weight: bold;
+	}
+}
+
+.abilo-recentpost-widget {
+	border: 1px solid $gray80;
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+
+		li {
+			padding: 8px 10px;
+			border-bottom: 1px solid $gray80;
+
+			&:last-child {
+				margin-bottom: 0;
+				padding-bottom: 0;
+				border-bottom: 0;
+			}
+
+			a {
+				color: $black;
+
+				&:hover {
+					color: $purplemimosa;
+				}
+			}
+		}
+	}
+}
+
+.abilo-prev-next {
+	.abilo-next {
+		display: block;
+		background-color: transparent;
+		border: 0;
+
+		a {
+			color: $bluemagenta;
+			padding: 8px 16px;
+			border: 2px solid $bluemagenta;
+
+			&:hover {
+				color: $maroon;
+				border: 2px solid $maroon;
+			}
+		}
+	}
+}
+
+%abilo-footer {
+	padding: 20px 0;
+}
+
+%about-follow {
+	color: $mauve;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.abilo-footer {
+	$this: &;
+
+	background-color: $bluemagenta;
+
+	&-body {
+		@extend %abilo-footer;
+	}
+
+	&-copyright {
+		@extend %abilo-footer;
+		span, a {
+			color: $white;
+		}
+
+		a {
+			&:hover {
+				color: $mauve;
+			}
+		}
+	}
+
+	&-about {
+		h5 {
+			@extend %about-follow;
+		}
+
+		p {
+			color: $white;
+		}
+
+		#{$this}-contact {
+			color: $white;
+			margin-bottom: 20px;
+
+			span {
+				width: 20px;
+				margin-right: 20px;
+
+				&.fa {
+					vertical-align: middle;
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	&-follow {
+		h5 {
+			@extend %about-follow;
+		}
+
+		&-icons {
+			padding: 10px 0;
+
+			.fa-facebook {
+				&:hover {
+					color: #3B5998;
+				}
+			}
+
+			.fa-google-plus {
+				&:hover {
+					color: #DD4B39;
+				}
+			}
+
+			.fa-instagram {
+				&:hover {
+					color: #8C001A;
+				}
+			}
+
+			.fa-linkedin {
+				&:hover {
+					color: #007BB6;
+				}
+			}
+
+			.fa-twitter {
+				&:hover {
+					color: #00ACED;
+				}
+			}
+
+			.fa-youtube-play {
+				&:hover {
+					color: #C4302B;
+				}
+			}
+		}
+	}
+
+	.abilo-left {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.hexagon {
+	position: relative;
+	display: inline-block;
+	width: 50px; 
+	height: 28.87px;
+	margin-top: 10px;
+	border-radius: 2px / 6px;
+	background-color: $purplemimosa;
+	text-align: center;
+
+	&:before, &:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		width: inherit;
+		height: inherit;
+		border-radius: inherit;
+		background-color: inherit;
+	}
+
+	&:before {
+		@include transform(rotate(60deg));
+	}
+
+	&:after {
+		@include transform(rotate(-60deg));
+	}
+
+	a {
+		color: $white;
+		position: relative;
+		z-index: 1;
+		line-height: 28.87px;
+		font-size: 22px;
+	}
+}
+
+.abilo-scrolltop {
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	padding: 8px 15px;
+	border-radius: 50px;
+	background-color: rgba(158, 123, 255, 0.8);
+	text-align: center;	
+	cursor: pointer;
+
+	i {
+		font-size: 18px;
+		color: $white;
+	}
+
+	&:hover, &:active, &:focus {
+		color: $white !important;
+	}
+}
+
+@media (min-width: 768px) {
+	%carouselitem1 {
+		display: block;
+	}
+
+	%carouselitem2 {
+		@include transition(none);
+	}
+
+	%carouselitem3 {
+		position: relative;
+	    @include transform(translate3d(-100%, 0, 0));
+	    visibility: visible;
+	}
+
+	.carousel-inner {
+		.active {
+			@extend %carouselitem1;
+			+ .carousel-item {
+				@extend %carouselitem1;
+				+ .carousel-item {
+					@extend %carouselitem1;
+				}
+			}
+		}
+
+		.carousel-item {
+			&.active {
+				&:not(.carousel-item-right) {
+					&:not(.carousel-item-left) {
+						@extend %carouselitem2;
+						+ .carousel-item {
+							@extend %carouselitem2;
+							+ .carousel-item {
+								@extend %carouselitem2;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.carousel-item-next, 
+		.carousel-item-prev {
+			position: relative;
+			@include transform(translate3d(0, 0, 0));
+		}
+
+		.active {
+			&.carousel-item {
+				+ .carousel-item {
+					+ .carousel-item {
+						+ .carousel-item {
+							position: absolute;
+						    top: 0;
+						    right: -33.3333%;
+						    z-index: -1;
+						    display: block;
+						    visibility: visible;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.active {
+		&.carousel-item-left {
+			+ .carousel-item-next {
+				&.carousel-item-left {
+					@extend %carouselitem3;
+				}
+			}
+		}
+	}
+
+	.carousel-item-next {
+		&.carousel-item-left {
+			+ .carousel-item {
+				@extend %carouselitem3;
+
+				+ .carousel-item {
+					@extend %carouselitem3;
+
+					+ .carousel-item {
+						@extend %carouselitem3;
+					}
+				}
+			}
+		}
+	}
+
+	.abilo-carousel {
+		.abilo-carousel-prev {
+			i {
+				@include prev-next(inline-block, 50px, 50px, 50px, center);
+				margin-left: -250px;
+				border-radius: 50%;
+				border: 1px solid $mauve;
+				font-size: 20px !important;
+				color: $mauve !important;
+			}
+		}
+
+		.abilo-carousel-next {
+			i {
+				@include prev-next(inline-block, 50px, 50px, 50px, center);
+				margin-right: -250px;
+				border-radius: 50%;
+				border: 1px solid $mauve;
+				font-size: 20px !important;
+				color: $mauve !important;
+			}
+		}
+	}
+}
+@media (max-width: 767px) {
+	.abilo-main {
+		.abilo-section1-column3 {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	.abilo-section1 {
+		$this: &;
+		&-image-sm {
+			position: relative;
+
+			img {
+				display: block;
+				width: 100%;
+			}
+		}
+
+		&-desc {
+			position: absolute;
+			top: 50%;
+			bottom: 0;
+			width: 100%;
+			padding-top: 10px;
+			padding-left: 20px;
+			padding-right: 20px;
+			background-color: rgba(128, 103, 183, 0.6);
+			color: $white;
+
+			h4 {
+				font-size: 22px;
+				text-transform: uppercase;
+			}
+
+			#{$this}-link {
+				text-transform: uppercase;
+				color: $white;
+
+				&:hover {
+					color: $maroon;
+				}
+			}
+		}
+	}
+
+	.abilo-footer-body {
+		.abilo-left {
+			padding-left: 12px;
+			padding-right: 12px;
+		}
+	}
+
+	.abilo-blog1 {
+		$this: &;
+
+		&-image-text {
+			#{$this}-text {
+				h1 {
+					font-size: 24px - 4;
+				}
+			}
+		}
+
+		@at-root & .abilo-blog-description {
+			height: auto;
+		}
+	}
+}

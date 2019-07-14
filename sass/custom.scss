@@ -32,6 +32,14 @@ $white 			: #FFF;
 	font-size: $size;
 }
 
+@mixin opacity-transform($opacity, $transform) {
+	transition: (opacity $opacity, transform $transform);
+	-webkit-transition: (opacity $opacity, -webkit-transform $transform);
+	-moz-transition: (opacity $opacity, -moz-transform $transform);
+	-ms-transition: (opacity $opacity, -ms-transform $transform);
+	-o-transition: (opacity $opacity, -o-transform $transform);
+}
+
 @mixin prev-next($display, $height, $width, $line, $align) {
 	display: $display;
 	height: $height;
@@ -235,6 +243,128 @@ ul, ol { list-style: none; }
 	}
 }
 
+.abilo-content-gallery { padding: 0 18px; }
+
+.abilo-gallery {
+	float: left;
+	display: inline-block;
+	padding: 0;
+	overflow: hidden;
+
+	&::last-child {
+		margin-bottom: 0;
+	}
+
+	figure {
+		position: relative;
+		text-align: center;
+		margin: 5px;
+
+		img {
+			position: relative;
+			display: block;
+			width: 100%;
+			padding: 0;
+		}
+
+		%figcaption-a {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+
+		figcaption {
+			@extend %figcaption-a;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+
+			p {
+				color: $white;
+				font-size: 14px;
+			}
+
+			> a {
+				@extend %figcaption-a;
+			}
+		}
+	}
+}
+
+.abilo-bubba-effect {
+	%before-after {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+		bottom: 20px;
+		left: 20px;
+		content: '';
+		opacity: 0;
+		@include opacity-transform(0.35s, 0.35s);
+	}
+
+	background-color: $gray20;
+
+	&:hover {
+		img {
+			opacity: 0.4;
+			filter: alpha(opacity=40);
+		}
+
+		p {
+			position: absolute;
+			left: 30px;
+			right: 30px;
+			opacity : 1;
+			filter: alpha(opacity=100);
+			@include transform(translate3d(0, 0, 0));
+		}
+	}
+
+	p {
+		opacity: 0;
+		@include opacity-transform(0.35s, 0.35s);
+		@include transform(translate3d(0, 20px, 0));
+	}
+
+	figcaption {
+		&::before {
+			border-top: 1px solid $maroon;
+			border-bottom: 1px solid $maroon;
+			@include transform(scale(0, 1));
+			@extend %before-after;
+		}
+
+		&::after {
+			border-left: 1px solid $maroon;
+			border-right: 1px solid $maroon;
+			@include transform(scale(1, 0));
+			@extend %before-after;
+		}
+	}
+
+	%hover-figcaption {
+		opacity: 1;
+		filter: alpha(opacity=100);
+		@include transform(scale(1));
+	}
+
+	&:hover {
+		figcaption {
+			&::before {
+				@extend %hover-figcaption;
+			}
+
+			&::after {
+				@extend %hover-figcaption;
+			}
+		}
+	}
+}
+
 .abilo-section1 {
 	$this: &;
 
@@ -260,8 +390,8 @@ ul, ol { list-style: none; }
 		position: relative;
 	}
 
-	.abilo-desc-top:before, 
-	.abilo-desc-top:after {
+	.abilo-desc-top::before, 
+	.abilo-desc-top::after {
 		content: '';
 		display: block;
 		position: absolute;
@@ -270,8 +400,8 @@ ul, ol { list-style: none; }
 		height: 0;
 	}
 
-	.abilo-desc-bottom:before, 
-	.abilo-desc-bottom:after {
+	.abilo-desc-bottom::before, 
+	.abilo-desc-bottom::after {
 		content: '';
 		display: block;
 		position: absolute;
@@ -281,28 +411,28 @@ ul, ol { list-style: none; }
 		z-index: 1;
 	}
 
-	.abilo-desc-bottom:before {
+	.abilo-desc-bottom::before {
 		left: 50%;
 		margin-left: -25px;
 		border: 20px solid transparent;
 		border-top-color: $gainsboro;
 	}
 
-	.abilo-desc-bottom:after {
+	.abilo-desc-bottom::after {
 		left: 50%;
 		margin-left: -25px;
 		border: 20px solid transparent;
 		border-top-color: $white;
 	}
 
-	.abilo-desc-top:before {
+	.abilo-desc-top::before {
 		left: 50%;
 		margin-left: -25px;
 		border: 20px solid transparent;
 		border-bottom-color: $gainsboro;
 	}
 
-	.abilo-desc-top:after {
+	.abilo-desc-top::after {
 		left: 50%;
 		margin-left: -25px;
 		border: 20px solid transparent;
@@ -943,7 +1073,7 @@ ul, ol { list-style: none; }
 		}
 
 		&-icons {
-			padding: 10px 0;
+			padding-top:10px;
 
 			.fa-facebook {
 				&:hover {
@@ -1048,6 +1178,7 @@ ul, ol { list-style: none; }
 }
 
 @media (min-width: 768px) {
+
 	%carouselitem1 {
 		display: block;
 	}
@@ -1164,10 +1295,26 @@ ul, ol { list-style: none; }
 	}
 }
 @media (max-width: 767px) {
+	.abilo-header {
+		&-text {
+			h1 {
+				font-size:24px;
+			}
+		}
+	}
+
 	.abilo-main {
 		.abilo-section1-column3 {
 			padding-left: 0;
 			padding-right: 0;
+		}
+	}
+
+	.max-gallery {
+		figure {
+			figcaption {
+				font-size: 11px;
+			}
 		}
 	}
 
@@ -1230,5 +1377,9 @@ ul, ol { list-style: none; }
 		@at-root & .abilo-blog-description {
 			height: auto;
 		}
+	}
+
+	.hexagon {
+		margin-bottom: 20px;
 	}
 }

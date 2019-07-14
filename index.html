@@ -4,7 +4,7 @@
 	<!-- meta -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="Victory Webstore">
+	<meta name="author" content="Eirene KW">
 
 	<!-- title -->
 	<title>Abilo</title>
@@ -36,7 +36,7 @@
 			<!-- Links -->
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-				    <li class="nav-item active"><a class="nav-link" href="#">Home</a></li>
+				    <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
 				    <li class="nav-item dropdown">
 				    	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">About Us</a>
 				    	<div class="dropdown-menu abilo-nav-drop">
@@ -46,7 +46,7 @@
 				    	</div>
 				    </li>
 				    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
-				    <li class="nav-item"><a class="nav-link" href="#">News</a></li>
+				    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
 				    <li class="nav-item"><a class="nav-link" href="blog.html">Blogs</a></li>
 				    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 				</ul>
@@ -265,6 +265,7 @@
 		</section>
 	</main>
 
+	<!-- Footer -->
 	<footer class="abilo-footer">
 		<div class="container">
 			<div class="abilo-footer-body">
@@ -297,7 +298,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="abilo-footer-copyright text-center">
-				<span>Copyright &copy;2018 Abilo Corp. All rights reserved. Designed by <a href="#">Eirene KW</a></span>
+				<span>Copyright &copy;2019 Abilo Corp. All rights reserved. Designed by <a href="index.html">Eirene KW</a></span>
 			</div>
 		</div>
 	</footer>
@@ -319,6 +320,23 @@
 	        "img/header-2.jpg",
 	        "img/header-3.jpg"
 	    ], { duration: 3000, fade: 750});
+
+	    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('.abilo-scrolltop').css("display", "block");
+            $('.abilo-scrolltop').fadeIn();
+        } else {
+            $('.abilo-scrolltop').css("display","none");
+            $('.abilo-scrolltop').fadeOut();
+        }
+	    });
+
+	    $('.abilo-scrolltop').click(function () {
+	        $("html, body").animate({
+	            scrollTop: 0
+	        }, 100);
+	        return false;
+	    });
 	});
 	</script>
 

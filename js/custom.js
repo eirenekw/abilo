@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function() { 
     $(window).bind('scroll', function() {
         var navHeight = $(window).height() - 500;
         if ($(window).scrollTop() > navHeight) {
@@ -53,23 +53,6 @@ $(document).ready(function() {
         return btn.click();
     });
     btn.replaceWith(svg.node);
-
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 100) {
-            $('.abilo-scrolltop').css("display", "block");
-            $('.abilo-scrolltop').fadeIn();
-        } else {
-            $('.abilo-scrolltop').css("display","none");
-            $('.abilo-scrolltop').fadeOut();
-        }
-    });
-
-	$('.abilo-scrolltop').click(function () {
-		$("html, body").animate({
-			scrollTop: 0
-		}, 100);
-		return false;
-	});
 });
 
 $('#abilo-carousel').on('slide.bs.carousel', function (e) {

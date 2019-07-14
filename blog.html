@@ -4,7 +4,7 @@
 	<!-- meta -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="author" content="Victory Webstore">
+	<meta name="author" content="Eirene KW">
 
 	<!-- title -->
 	<title>Abilo</title>
@@ -45,7 +45,7 @@
 				    	</div>
 				    </li>
 				    <li class="nav-item"><a class="nav-link" href="#">Events</a></li>
-				    <li class="nav-item"><a class="nav-link" href="#">News</a></li>
+				    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
 				    <li class="nav-item active"><a class="nav-link" href="blog.html">Blogs</a></li>
 				    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 				</ul>
@@ -246,7 +246,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="abilo-footer-copyright text-center">
-				<span>Copyright &copy;2018 Abilo Corp. All rights reserved. Designed by <a href="#">Eirene KW</a></span>
+				<span>Copyright &copy;2019 Abilo Corp. All rights reserved. Designed by <a href="index.html">Eirene KW</a></span>
 			</div>
 		</div>
 	</footer>
@@ -260,5 +260,26 @@
 	<script src="js/jquery.backstretch.min.js"></script>
 	<script src="js/snap.svg-min.js"></script>
 	<script src="js/custom.js"></script>
+	
+	<script>
+	$(document).ready(function() {
+		$(window).scroll(function () {
+	        if ($(this).scrollTop() > 100) {
+	            $('.abilo-scrolltop').css("display", "block");
+	            $('.abilo-scrolltop').fadeIn();
+	        } else {
+	            $('.abilo-scrolltop').css("display","none");
+	            $('.abilo-scrolltop').fadeOut();
+	        }
+	    });
+
+	    $('.abilo-scrolltop').click(function () {
+	        $("html, body").animate({
+	            scrollTop: 0
+	        }, 100);
+	        return false;
+	    });
+	});
+	</script>
 </body>
 </html>
